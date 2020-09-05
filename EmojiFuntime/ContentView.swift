@@ -11,35 +11,18 @@ import SwiftUI
 struct ContentView: View {
     
     @State var show = false
-
     @State private var background = Color.white
     
-    @State private var emojiList =
+    @State var targetEmojiKey = ""
+    @State var targetEmojiValue = ""
 
-           ["🐶", "😺", "🚗", "🎸"]
-
-    @State var targetMoji = ""
-    
-    @State var targetMojiKey = ""
-    
-    @State var targetMojiValue = ""
-
-    
-    
-    
-    
-    @State var randomEmoji1 = ""
-    
-    @State var randomEmoji2 = ""
-    
-    @State var randomEmoji1Value = ""
-
-    @State var randomEmoji2Value = ""
-
+    @State var randomEmojiValue1 = ""
+    @State var randomEmojiValue2 = ""
+    @State var randomEmojiKey1 = ""
+    @State var randomEmojiKey2 = ""
 
     let emojiDict =  ["Dog": "🐶", "Cat": "😺", "Car": "🚗", "Guitar": "🎸"]
 
-    
     var body: some View {
         ZStack {
             Rectangle()
@@ -62,11 +45,11 @@ struct ContentView: View {
             HStack {
                 Spacer()
                 
-                CardView(symbol: $targetMojiValue, background: $background)
+                CardView(targetEmoji: $targetEmojiKey, emojiKey: $targetEmojiKey, emojiValue: $targetEmojiValue, background: $background)
 
-                CardView(symbol: $randomEmoji1Value, background: $background)
+                CardView(targetEmoji: $targetEmojiKey, emojiKey: $randomEmojiKey1, emojiValue: $randomEmojiValue1, background: $background)
 
-                CardView(symbol: $randomEmoji2Value, background: $background)
+                CardView(targetEmoji: $targetEmojiKey, emojiKey: $randomEmojiKey2, emojiValue: $randomEmojiValue2, background: $background)
 
                 Spacer()
             }
@@ -74,7 +57,7 @@ struct ContentView: View {
             Spacer()
             Spacer()
         
-            Text(self.targetMojiKey)
+            Text(self.targetEmojiKey)
                 .background(Circle()
                 .trim(from: show ? 0.1 : 0.99, to: 1)
                 .stroke(Color.blue, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
@@ -91,19 +74,24 @@ struct ContentView: View {
             
             Button(action: {
                 // change images
-                let randomEmoji = self.emojiDict.randomElement()
+                let randomEmoji1 = self.emojiDict.randomElement()
                 
                 let randomEmoji2 = self.emojiDict.randomElement()
 
                 let targetEmoji = self.emojiDict.randomElement()
 
-                self.randomEmoji1Value = randomEmoji!.value
+                self.randomEmojiValue1 = randomEmoji1!.value
                 
-                self.randomEmoji2Value = randomEmoji2!.value
+                self.randomEmojiValue2 = randomEmoji2!.value
 
-                self.targetMojiValue = targetEmoji!.value
+                self.targetEmojiValue = targetEmoji!.value
 
-                self.targetMojiKey = targetEmoji!.key
+                self.targetEmojiKey = targetEmoji!.key
+                
+                self.randomEmojiKey1 = randomEmoji1!.key
+                
+                self.randomEmojiKey2 = randomEmoji2!.key
+
 
                 
                 

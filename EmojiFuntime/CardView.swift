@@ -10,8 +10,9 @@ import SwiftUI
 
 struct CardView: View {
     
-    
-    @Binding var symbol: String
+    @Binding var targetEmoji: String
+    @Binding var emojiKey: String
+    @Binding var emojiValue: String
     @Binding var background:Color
     
         var body: some View {
@@ -25,10 +26,13 @@ struct CardView: View {
                 )
 
                 Button(action: {
-                    print("button works")
-
+                    if self.emojiKey == self.targetEmoji {
+                        print("you got it!")
+                    } else {
+                        print("wrong emoji!")
+                    }
                 }) {
-                    Text(symbol)
+                    Text(emojiValue)
                         .font(.system(size: 80))
                 }
 
@@ -41,3 +45,4 @@ struct CardView: View {
 //        CardView(symbol: Binding.constant("cat"), background: Binding.constant(Color.green))
 //    }
 //}
+
