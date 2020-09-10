@@ -14,6 +14,7 @@ struct CardView: View {
     @Binding var emojiKey: String
     @Binding var emojiValue: String
     @Binding var background:Color
+    @Binding var progressAmount: Float
     
         var body: some View {
             ZStack {
@@ -27,9 +28,12 @@ struct CardView: View {
 
                 Button(action: {
                     if self.emojiKey == self.targetEmoji {
+                        self.background = Color.green
+                        self.progressAmount += 0.333
+                        
                         print("you got it!")
                     } else {
-                        print("wrong emoji!")
+                        self.background = Color.red
                     }
                 }) {
                     Text(emojiValue)
@@ -46,3 +50,9 @@ struct CardView: View {
 //    }
 //}
 
+
+struct CardView_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
+}
