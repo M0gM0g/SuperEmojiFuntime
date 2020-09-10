@@ -11,13 +11,13 @@ import SwiftUI
 struct ContentView: View {
     
     @State var show = false
-    @State var background = Color.white
+    @State var cardBackground = Color.white
     
-    @State var targetEmojiKey = ""
-    @State var targetEmojiValue = ""
+    @State var targetEmojiKey = "?"
+    @State var targetEmojiValue = "?"
 
-    @State var randomEmojiValue1 = ""
-    @State var randomEmojiValue2 = ""
+    @State var randomEmojiValue1 = "?"
+    @State var randomEmojiValue2 = "?"
     @State var randomEmojiKey1 = ""
     @State var randomEmojiKey2 = ""
 
@@ -30,7 +30,7 @@ struct ContentView: View {
 
     
     func resetGameState() {
-        self.background = Color.white
+        self.cardBackground = Color.white
         
         let randomEmoji1 = self.emojiDict.randomElement()
         
@@ -55,8 +55,9 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
+            
             Rectangle()
-                .foregroundColor(Color(red: 200/255, green: 143/255, blue: 32/255))
+                .foregroundColor(ColorManager.orange)
                 .edgesIgnoringSafeArea(.all)
         
         VStack {
@@ -66,7 +67,7 @@ struct ContentView: View {
                 
                 Text("Super Emoji Funtime!")
                 .bold()
-                    .foregroundColor(.white)
+                    .foregroundColor(Color.white)
                     .fontWeight(.bold)
                     .font(.title)
             
@@ -75,11 +76,11 @@ struct ContentView: View {
             HStack {
                 Spacer()
                 
-                CardView(targetEmoji: $targetEmojiKey, emojiKey: $targetEmojiKey, emojiValue: $targetEmojiValue, background: $background, progressAmount: $progressValue)
+                CardView(targetEmoji: $targetEmojiKey, emojiKey: $targetEmojiKey, emojiValue: $targetEmojiValue, background: $cardBackground, progressAmount: $progressValue)
 
-                CardView(targetEmoji: $targetEmojiKey, emojiKey: $randomEmojiKey1, emojiValue: $randomEmojiValue1, background: $background, progressAmount: $progressValue)
+                CardView(targetEmoji: $targetEmojiKey, emojiKey: $randomEmojiKey1, emojiValue: $randomEmojiValue1, background: $cardBackground, progressAmount: $progressValue)
 
-                CardView(targetEmoji: $targetEmojiKey, emojiKey: $randomEmojiKey2, emojiValue: $randomEmojiValue2, background: $background, progressAmount: $progressValue)
+                CardView(targetEmoji: $targetEmojiKey, emojiKey: $randomEmojiKey2, emojiValue: $randomEmojiValue2, background: $cardBackground, progressAmount: $progressValue)
 
                 Spacer()
             }
@@ -90,25 +91,6 @@ struct ContentView: View {
             
             ProgressBar(progress: self.$progressValue, progressBarText: self.$targetEmojiKey)
                 .padding()
-//            Text(self.targetEmojiKey)
-//                .background(ProgressBar(progress: $progressValue)
-//                .trim(from: show ? 0.1 : 0.99, to: 1)
-//                .stroke(Color.blue, style: StrokeStyle(lineWidth: 10, lineCap: .round, lineJoin: .round))
-//                .rotationEffect(.degrees(90))
-//            .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
-//                .frame(width: 100, height: 100)
-//                .animation(.easeOut)
-//                .onTapGesture {
-//                    self.show.toggle()
-//                    }
-//
-//            )
-            
-//            VStack {
-//                ProgressBar(progress: self.$progressValue)
-//                    .frame(width: 150.0, height: 150.0)
-//                    .padding(40.0)
-//            }
             
             Spacer()
             
@@ -119,13 +101,13 @@ struct ContentView: View {
                     .fontWeight(.bold)
                     .font(.title)
                     .padding()
-                    .background(Color.blue)
+                    .background(ColorManager.blue)
                     .cornerRadius(40)
-                    .foregroundColor(.white)
+                    .foregroundColor(ColorManager.yellow)
                     .padding(10)
                     .overlay(
                         RoundedRectangle(cornerRadius: 40)
-                            .stroke(Color.blue, lineWidth: 5)
+                            .stroke(ColorManager.blue, lineWidth: 8)
                     )
             }
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
