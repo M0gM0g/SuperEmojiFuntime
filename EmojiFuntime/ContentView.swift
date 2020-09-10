@@ -23,20 +23,24 @@ struct ContentView: View {
 
     @State var progressValue: Float = 0.0
     
-    let emojiDict =  ["Dog": "🐶", "Cat": "😺", "Car": "🚗", "Guitar": "🎸"]
+    let sourceEmojiDict =  ["Dog": "🐶", "Cat": "😺", "Car": "🚗", "Guitar": "🎸", "Bowling" : "🎳", "Truck" : "🚚", "House" : "🏠", "Hammer" : "🔨", "Bed" : "🛏"]
     
+    @State var emojiDict = ["Dog": "🐶", "Cat": "😺", "Car": "🚗", "Guitar": "🎸", "Bowling" : "🎳", "Truck" : "🚚", "House" : "🏠", "Hammer" : "🔨", "Bed" : "🛏"]
     
-    
-
-    
-    func resetGameState() {
+    func setGameCards() {
         self.cardBackground = Color.white
-        
-        let randomEmoji1 = self.emojiDict.randomElement()
-        
-        let randomEmoji2 = self.emojiDict.randomElement()
 
+        let randomEmoji1 = emojiDict.randomElement()
+        let removalKey1 = randomEmoji1!.key
+        emojiDict[removalKey1] = nil
+            
+        let randomEmoji2 = self.emojiDict.randomElement()
+        let removalKey2 = randomEmoji2!.key
+        emojiDict[removalKey2] = nil
+            
         let targetEmoji = self.emojiDict.randomElement()
+        let removalKey = targetEmoji!.key
+        emojiDict[removalKey] = nil
 
         self.randomEmojiValue1 = randomEmoji1!.value
         
@@ -50,7 +54,14 @@ struct ContentView: View {
         
         self.randomEmojiKey2 = randomEmoji2!.key
     }
-    
+    func resetGameState() {
+        if emojiDict.count < 6 {
+            emojiDict = sourceEmojiDict
+            setGameCards()
+        } else {
+            setGameCards()
+    }
+    }
     
     
     var body: some View {
