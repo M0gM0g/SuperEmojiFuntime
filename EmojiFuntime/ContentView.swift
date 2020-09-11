@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @State var isPlayingGame = false
+    
     @State var show = false
     @State var cardBackground = Color.white
     
@@ -26,6 +28,12 @@ struct ContentView: View {
     let sourceEmojiDict =  ["Dog": "🐶", "Cat": "😺", "Car": "🚗", "Guitar": "🎸", "Bowling" : "🎳", "Truck" : "🚚", "House" : "🏠", "Hammer" : "🔨", "Bed" : "🛏"]
     
     @State var emojiDict = ["Dog": "🐶", "Cat": "😺", "Car": "🚗", "Guitar": "🎸", "Bowling" : "🎳", "Truck" : "🚚", "House" : "🏠", "Hammer" : "🔨", "Bed" : "🛏"]
+    
+    func resetProgressBar() {
+        if progressValue > 0.98 {
+            progressValue = 0.0
+        }
+    }
     
     func setGameCards() {
         self.cardBackground = Color.white
@@ -55,6 +63,8 @@ struct ContentView: View {
         self.randomEmojiKey2 = randomEmoji2!.key
     }
     func resetGameState() {
+        resetProgressBar()
+        
         if emojiDict.count < 6 {
             emojiDict = sourceEmojiDict
             setGameCards()
@@ -68,22 +78,18 @@ struct ContentView: View {
         ZStack {
             
             Rectangle()
-                .foregroundColor(ColorManager.orange)
+                .foregroundColor(ColorManager.yellow)
                 .edgesIgnoringSafeArea(.all)
         
         VStack {
             
             HStack {
                 Image(decorative: "emoji")
-                
-                Text("Super Emoji Funtime!")
-                .bold()
-                    .foregroundColor(Color.white)
-                    .fontWeight(.bold)
-                    .font(.title)
-            
+                Image(decorative: "emojiBanner")
             }
     
+            
+            if isPlayingGame {
             HStack {
                 Spacer()
                 
@@ -95,18 +101,41 @@ struct ContentView: View {
 
                 Spacer()
             }
-            
+            }
             Spacer()
             Spacer()
         
-            
-            ProgressBar(progress: self.$progressValue, progressBarText: self.$targetEmojiKey)
+            if isPlayingGame {
+                ProgressBar(progress: self.$progressValue, progressBarText: self.$targetEmojiKey)
                 .padding()
+            }
             
             Spacer()
+
             
+            if isPlayingGame {
+                
             Button(action: {
                 self.resetGameState()
+            }) {
+                Text("Play!")
+                    .fontWeight(.bold)
+                    .font(.title)
+                    .padding()
+                    .background(ColorManager.blue)
+                    .cornerRadius(40)
+                    .foregroundColor(ColorManager.yellow)
+                    .padding(10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 40)
+                            .stroke(ColorManager.blue, lineWidth: 8)
+                    )
+            }
+            }
+            
+            
+            Button(action: {
+                self.isPlayingGame.toggle()
             }) {
                 Text("Start/Pause")
                     .fontWeight(.bold)
@@ -121,11 +150,13 @@ struct ContentView: View {
                             .stroke(ColorManager.blue, lineWidth: 8)
                     )
             }
+            
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     .padding()
-        }
+        }.animation(.easeInOut(duration: 0.5))
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

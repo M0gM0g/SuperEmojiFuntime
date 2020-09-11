@@ -30,8 +30,7 @@ struct CardView: View {
                     if self.emojiKey == self.targetEmoji {
                         self.background = Color.green
                         self.progressAmount += 0.333
-                        
-                        print("you got it!")
+                     
                     } else {
                         self.background = Color.red
                     }

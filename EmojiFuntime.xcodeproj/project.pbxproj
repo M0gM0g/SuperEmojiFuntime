@@ -73,11 +73,11 @@
 				A8D0B65B250AC21700B925C1 /* Colors.xcassets */,
 				A83E300D24FEBA05004C0DCF /* LaunchScreen.storyboard */,
 				A83E301024FEBA05004C0DCF /* Info.plist */,
-				A83E300A24FEBA05004C0DCF /* Preview Content */,
 				A890CE7D2500333200F98D69 /* CardView.swift */,
 				A890CE7F25014E5600F98D69 /* EmojiLabel.swift */,
 				A8D0B659250AAFF500B925C1 /* ProgressBar.swift */,
 				A8D0B65D250AC44700B925C1 /* ColorManager.swift */,
+				A83E300A24FEBA05004C0DCF /* Preview Content */,
 			);
 			path = EmojiFuntime;
 			sourceTree = "<group>";
