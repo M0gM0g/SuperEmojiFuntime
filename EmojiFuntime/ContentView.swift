@@ -7,9 +7,24 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
     
+    func playSpeech(word: String) {
+        let utterance = AVSpeechUtterance(string: word)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.rate = 0.2
+        
+        let synth = AVSpeechSynthesizer()
+        synth.speak(utterance)
+        
+        func speechSynth(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
+            
+        }
+        
+    }
+  
     @State var isPlayingGame = false
     
     @State var show = false
@@ -117,6 +132,7 @@ struct ContentView: View {
                 
             Button(action: {
                 self.resetGameState()
+                self.playSpeech(word: self.targetEmojiKey)
             }) {
                 Text("Play!")
                     .fontWeight(.bold)
