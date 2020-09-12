@@ -25,7 +25,7 @@ struct CardView: View {
                     .frame(width: 100, height: 100)
                     .overlay(
                         RoundedRectangle(cornerRadius:16)
-                            .strokeBorder(Color.white, lineWidth: 2)
+                            .strokeBorder(Color.black, lineWidth: 2)
                 )
 
                 Button(action: {
