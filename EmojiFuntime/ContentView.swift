@@ -102,8 +102,8 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             
-            Rectangle()
-                .foregroundColor(ColorManager.yellow)
+            
+            LinearGradient(gradient: Gradient(colors: [ColorManager.yellow, .white, ColorManager.yellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
         
         VStack {
@@ -149,14 +149,10 @@ struct ContentView: View {
                     .fontWeight(.bold)
                     .font(.title)
                     .padding()
-                    .background(ColorManager.blue)
+                    .background(LinearGradient(gradient: Gradient(colors: [ColorManager.red, ColorManager.orange]), startPoint: .topLeading, endPoint: .bottomTrailing))
                     .cornerRadius(40)
-                    .foregroundColor(ColorManager.yellow)
+                    .foregroundColor(.white)
                     .padding(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 40)
-                            .stroke(ColorManager.blue, lineWidth: 8)
-                    )
             }
             }
             
@@ -168,14 +164,11 @@ struct ContentView: View {
                     .fontWeight(.bold)
                     .font(.title)
                     .padding()
-                    .background(ColorManager.blue)
+                    .background(LinearGradient(gradient: Gradient(colors: [ColorManager.red, ColorManager.orange]), startPoint: .topLeading, endPoint: .bottomTrailing))
                     .cornerRadius(40)
-                    .foregroundColor(ColorManager.yellow)
+                    .foregroundColor(.white)
                     .padding(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 40)
-                            .stroke(ColorManager.blue, lineWidth: 8)
-                    )
+//                    )
             }
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
