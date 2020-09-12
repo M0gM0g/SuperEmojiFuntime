@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,23 +18,22 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="pjn-Rc-M01">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emojiBanner" translatesAutoresizingMaskIntoConstraints="NO" id="QTf-bV-4Sy">
-                                <rect key="frame" x="57" y="240" width="300" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="7O9-Ji-Hdc"/>
-                                    <constraint firstAttribute="height" constant="150" id="fl9-qC-HOe"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoBackground" translatesAutoresizingMaskIntoConstraints="NO" id="5ao-kB-XMd">
+                                <rect key="frame" x="32" y="323" width="350" height="250"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="QTf-bV-4Sy" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" constant="240" id="8pF-Zv-w6r"/>
-                            <constraint firstItem="QTf-bV-4Sy" firstAttribute="centerX" secondItem="pjn-Rc-M01" secondAttribute="centerX" id="TgP-Cu-n1d"/>
+                            <constraint firstItem="5ao-kB-XMd" firstAttribute="centerX" secondItem="pjn-Rc-M01" secondAttribute="centerX" id="9fy-xD-QbB"/>
+                            <constraint firstItem="5ao-kB-XMd" firstAttribute="top" secondItem="DkQ-rX-0cW" secondAttribute="top" constant="279" id="FxM-oO-PTt"/>
+                            <constraint firstItem="5ao-kB-XMd" firstAttribute="leading" secondItem="DkQ-rX-0cW" secondAttribute="leading" constant="32" id="SKQ-Gg-tVy"/>
+                            <constraint firstItem="5ao-kB-XMd" firstAttribute="centerY" secondItem="pjn-Rc-M01" secondAttribute="centerY" id="VSv-wz-NZE"/>
                             <constraint firstAttribute="trailing" secondItem="pjn-Rc-M01" secondAttribute="trailing" id="WJn-m4-sj9"/>
                             <constraint firstItem="pjn-Rc-M01" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="egF-nH-PWp"/>
                             <constraint firstAttribute="bottom" secondItem="pjn-Rc-M01" secondAttribute="bottom" id="pLT-lu-Jvo"/>
                             <constraint firstItem="pjn-Rc-M01" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="zT4-xc-Fab"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="DkQ-rX-0cW"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -43,6 +43,6 @@
     </scenes>
     <resources>
         <image name="background" width="600" height="600"/>
-        <image name="emojiBanner" width="236" height="144"/>
+        <image name="logoBackground" width="2242" height="1414"/>
     </resources>
 </document>
