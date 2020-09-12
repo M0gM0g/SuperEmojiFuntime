@@ -14,8 +14,8 @@ struct ContentView: View {
     func playSpeech(word: String) {
         let utterance = AVSpeechUtterance(string: word)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        utterance.rate = 0.2
-        utterance.pitchMultiplier = 0.8
+        utterance.rate = 0.3
+        utterance.pitchMultiplier = 0.9
         
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
@@ -86,6 +86,7 @@ struct ContentView: View {
         
         self.randomEmojiKey2 = randomEmoji2!.key
     }
+    
     func resetGameState() {
         resetProgressBar()
         
@@ -143,7 +144,6 @@ struct ContentView: View {
                 self.resetGameState()
                 self.wordsToLetters(word: self.targetEmojiKey)
                 self.playSpeech(word: self.wordToBeSaid)
-                print("wordtobesaid is " + self.wordToBeSaid)
             }) {
                 Text("Play!")
                     .fontWeight(.bold)

@@ -16,6 +16,8 @@ struct CardView: View {
     @Binding var background:Color
     @Binding var progressAmount: Float
     
+   
+    
         var body: some View {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
@@ -30,7 +32,7 @@ struct CardView: View {
                     if self.emojiKey == self.targetEmoji {
                         self.background = Color.green
                         self.progressAmount += 0.333
-                     
+                      
                     } else {
                         self.background = Color.red
                     }
