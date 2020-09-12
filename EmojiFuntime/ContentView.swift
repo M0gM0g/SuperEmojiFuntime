@@ -14,11 +14,12 @@ struct ContentView: View {
     func playSpeech(word: String) {
         let utterance = AVSpeechUtterance(string: word)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        utterance.rate = 0.2
+        utterance.rate = 0.3
+        utterance.pitchMultiplier = 0.9
         
         let synth = AVSpeechSynthesizer()
         synth.speak(utterance)
-        
+                
         func speechSynth(_ synthesizer: AVSpeechSynthesizer, didStart utterance: AVSpeechUtterance) {
             
         }
@@ -37,12 +38,20 @@ struct ContentView: View {
     @State var randomEmojiValue2 = "?"
     @State var randomEmojiKey1 = ""
     @State var randomEmojiKey2 = ""
-
+    
+    @State var lettersSpaced = ""
+    @State var wordToBeSaid = ""
+    
     @State var progressValue: Float = 0.0
     
     let sourceEmojiDict =  ["Dog": "🐶", "Cat": "😺", "Car": "🚗", "Guitar": "🎸", "Bowling" : "🎳", "Truck" : "🚚", "House" : "🏠", "Hammer" : "🔨", "Bed" : "🛏"]
     
     @State var emojiDict = ["Dog": "🐶", "Cat": "😺", "Car": "🚗", "Guitar": "🎸", "Bowling" : "🎳", "Truck" : "🚚", "House" : "🏠", "Hammer" : "🔨", "Bed" : "🛏"]
+    
+    func wordsToLetters(word: String) {
+        lettersSpaced = word.map { "\($0)" }.joined(separator: "...")
+        wordToBeSaid = word + "\n" + "\n" + lettersSpaced + "\n" + "\n" + word
+    }
     
     func resetProgressBar() {
         if progressValue > 0.98 {
@@ -77,6 +86,7 @@ struct ContentView: View {
         
         self.randomEmojiKey2 = randomEmoji2!.key
     }
+    
     func resetGameState() {
         resetProgressBar()
         
@@ -92,15 +102,22 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             
-            Rectangle()
-                .foregroundColor(ColorManager.yellow)
+            
+            LinearGradient(gradient: Gradient(colors: [ColorManager.yellow, .white, ColorManager.yellow]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .edgesIgnoringSafeArea(.all)
         
         VStack {
             
+//            HStack {
+//                Image(decorative: "emoji")
+//                Image(decorative: "emojiBanner")
+//                }
+//            .padding()
+//            .overlay(RoundedRectangle(cornerRadius: 16)
+//            .stroke(Color.black, lineWidth: 3)
+//            )
             HStack {
-                Image(decorative: "emoji")
-                Image(decorative: "emojiBanner")
+                TopBanner()
             }
     
             
@@ -132,20 +149,17 @@ struct ContentView: View {
                 
             Button(action: {
                 self.resetGameState()
-                self.playSpeech(word: self.targetEmojiKey)
+                self.wordsToLetters(word: self.targetEmojiKey)
+                self.playSpeech(word: self.wordToBeSaid)
             }) {
                 Text("Play!")
                     .fontWeight(.bold)
                     .font(.title)
                     .padding()
-                    .background(ColorManager.blue)
+                    .background(LinearGradient(gradient: Gradient(colors: [ColorManager.red, ColorManager.orange]), startPoint: .topLeading, endPoint: .bottomTrailing))
                     .cornerRadius(40)
-                    .foregroundColor(ColorManager.yellow)
+                    .foregroundColor(.white)
                     .padding(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 40)
-                            .stroke(ColorManager.blue, lineWidth: 8)
-                    )
             }
             }
             
@@ -157,14 +171,11 @@ struct ContentView: View {
                     .fontWeight(.bold)
                     .font(.title)
                     .padding()
-                    .background(ColorManager.blue)
+                    .background(LinearGradient(gradient: Gradient(colors: [ColorManager.red, ColorManager.orange]), startPoint: .topLeading, endPoint: .bottomTrailing))
                     .cornerRadius(40)
-                    .foregroundColor(ColorManager.yellow)
+                    .foregroundColor(.white)
                     .padding(10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 40)
-                            .stroke(ColorManager.blue, lineWidth: 8)
-                    )
+//                    )
             }
             
         }.frame(maxWidth: .infinity, maxHeight: .infinity)

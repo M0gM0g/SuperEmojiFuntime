@@ -6,4 +6,5 @@ struct ColorManager{
     static let yellow = Color("KidsYellow")
     static let green = Color("KidsGreen")
     static let orange = Color("KidsOrange")
+    static let red = Color("KidsRed")
 }
