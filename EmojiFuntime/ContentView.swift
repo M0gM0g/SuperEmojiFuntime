@@ -108,15 +108,17 @@ struct ContentView: View {
         
         VStack {
             
+//            HStack {
+//                Image(decorative: "emoji")
+//                Image(decorative: "emojiBanner")
+//                }
+//            .padding()
+//            .overlay(RoundedRectangle(cornerRadius: 16)
+//            .stroke(Color.black, lineWidth: 3)
+//            )
             HStack {
-                Image(decorative: "emoji")
-                Image(decorative: "emojiBanner")
-                }
-            .padding()
-            .overlay(RoundedRectangle(cornerRadius: 16)
-            .stroke(Color.black, lineWidth: 3)
-            )
-            
+                TopBanner()
+            }
     
             
             if isPlayingGame {
