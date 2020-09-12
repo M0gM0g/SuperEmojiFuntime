@@ -1,12 +1,12 @@
 # SuperEmojiFuntime
 
-Super Emoji Funtime! is an children's iOS learning application built using SwiftUI.
+Super Emoji Funtime! is a children's iOS learning application built using SwiftUI.
 
 The premise of SEF! is simple:
 
-You are given a word and must match the word to the given set of emojis.
+You are given a target word and must match the word to the correct emoji.
 
-There is the target word and 3 emojis to choose from. The "decoy" emojis are random.
+There is a target word and 3 emojis to choose from. The "decoy" emojis are random.
 
 When the target word is displayed, the word is spoken using Apple's speech sythesis framework. 
 
